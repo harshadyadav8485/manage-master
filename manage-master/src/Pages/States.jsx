@@ -4,22 +4,25 @@ import axios from "axios";
 
 export const States = () => {
   const [stateData, setStateData] = useState([]);
-  const [loding, setLoding] = useState(false);
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const fetchState = async (searchTerm) => {
-    setLoding(true);
+  const fetchState = async (search) => {
+    setLoading(true);
     try {
       const response = await axios.get(
-        `https://masterservice.agrozone.in/master/states/v1?searchTerm=${searchTerm}&pageNo=1&recordsPerPage=100`
+        `https://masterservice.agrozone.in/master/states/v1?searchTerm=${search}&pageNo=1&recordsPerPage=100`
       );
-      setStateData(response.data.data.states);
-      setLoding(false);
-    } catch (error) {
-      setError(error.message);
+      setStateData(response.data.data.states || []);
+      setError(null); // Clear any previous error
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchState(searchTerm);
   }, [searchTerm]);
@@ -31,10 +34,6 @@ export const States = () => {
   const handleClick = () => {
     alert("Button clicked!");
   };
-
-  useEffect(() => {
-    fetchState();
-  }, []);
 
   return (
     <>
@@ -51,49 +50,55 @@ export const States = () => {
         </div>
       </div>
 
-      <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="px-6 py-3">
-                State ID
-              </th>
-              <th scope="col" class="px-6 py-3">
-                State Name
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Live In Market place
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Live For Delivery
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Action{" "}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {stateData.map((state) => (
-              <tr
-                key={state.stateId}
-                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-              >
-                <td class="px-6 py-4">{state.stateId}</td>
-                <td class="px-6 py-4">{state.state}</td>
-                <td class="px-6 py-4">
-                  {state.isLiveForDelivery ? "true" : false}
-                </td>
-                <td class="px-6 py-4">
-                  {state.isLiveOnMarketPlace ? "true" : false}
-                </td>{" "}
-                <td class="px-6 py-4">
-                  <Button text="Edit" onClick={handleClick} />
-                </td>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p className="text-red-500">Error: {error}</p>
+      ) : (
+        <div className="relative overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  State ID
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  State Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Live In Market Place
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Live For Delivery
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {stateData.map((state) => (
+                <tr
+                  key={state.stateId}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <td className="px-6 py-4">{state.stateId}</td>
+                  <td className="px-6 py-4">{state.state}</td>
+                  <td className="px-6 py-4">
+                    {state.isLiveForDelivery ? "true" : "false"}
+                  </td>
+                  <td className="px-6 py-4">
+                    {state.isLiveOnMarketPlace ? "true" : "false"}
+                  </td>
+                  <td className="px-6 py-4">
+                    <Button text="Edit" onClick={handleClick} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   );
 };
