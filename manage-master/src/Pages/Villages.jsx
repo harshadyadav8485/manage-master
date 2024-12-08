@@ -1,3 +1,3 @@
-export const District = () => {
+export const Villages = () => {
   return <>District Page</>;
 };

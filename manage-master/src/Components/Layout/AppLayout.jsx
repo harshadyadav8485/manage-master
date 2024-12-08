@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "./Sidebar";
-import { Header } from "./Header"; // Import Header component
+import { Header } from "./Header";
 
 export const AppLayout = () => {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 ml-64 flex flex-col">
-        <Header />
-        <main className="flex-1 p-4 bg-gray-50 overflow-y-auto">
+
+      <div className="flex-1 ml-56 flex flex-col">
+        <Header className="fixed w-full top-0 left-0 z-10" />
+
+        <main className="flex-1 p-4 bg-gray-50">
           <Outlet />
         </main>
       </div>

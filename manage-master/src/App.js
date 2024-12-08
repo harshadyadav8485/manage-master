@@ -6,6 +6,9 @@ import { AppLayout } from "./Components/Layout/AppLayout";
 import "./App.css";
 
 import { States } from "./Pages/States";
+import { District } from "./Pages/Districts";
+import { SubDistricts } from "./Pages/SubDistricts";
+import { Villages } from "./Pages/Villages";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,6 +23,18 @@ function App() {
         {
           path: "/states",
           element: <States />,
+        },
+        {
+          path: "/districts",
+          element: <District />,
+        },
+        {
+          path: "/SubDistricts",
+          element: <SubDistricts />,
+        },
+        {
+          path: "/villages",
+          element: <Villages />,
         },
       ],
     },
