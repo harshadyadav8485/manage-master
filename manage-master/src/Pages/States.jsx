@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../Components/UI/Button";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export const States = () => {
   const [stateData, setStateData] = useState([]);
@@ -15,7 +16,7 @@ export const States = () => {
         `https://masterservice.agrozone.in/master/states/v1?searchTerm=${search}&pageNo=1&recordsPerPage=100`
       );
       setStateData(response.data.data.states || []);
-      setError(null); // Clear any previous error
+      setError(null);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -46,7 +47,10 @@ export const States = () => {
             placeholder="Search by state"
             className="px-4 py-2 border border-gray-300 rounded"
           />
-          <Button text="Add State" />
+          <Link to="/addState">
+            {" "}
+            <Button text="Add State" />
+          </Link>
         </div>
       </div>
 

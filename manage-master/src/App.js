@@ -9,6 +9,8 @@ import { States } from "./Pages/States";
 import { District } from "./Pages/Districts";
 import { SubDistricts } from "./Pages/SubDistricts";
 import { Villages } from "./Pages/Villages";
+import { AddState } from "./Pages/AddState";
+import { AddDistrict } from "./Pages/AddDistrict";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +37,14 @@ function App() {
         {
           path: "/villages",
           element: <Villages />,
+        },
+        {
+          path: "/addState",
+          element: <AddState />,
+        },
+        {
+          path: "/addDistrict",
+          element: <AddDistrict />,
         },
       ],
     },
