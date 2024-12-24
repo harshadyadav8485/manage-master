@@ -11,6 +11,7 @@ import { SubDistricts } from "./Pages/SubDistricts";
 import { Villages } from "./Pages/Villages";
 import { AddState } from "./Pages/AddState";
 import { AddDistrict } from "./Pages/AddDistrict";
+import { Cards } from "./Pages/Cards";
 
 function App() {
   const router = createBrowserRouter([
@@ -45,6 +46,10 @@ function App() {
         {
           path: "/addDistrict",
           element: <AddDistrict />,
+        },
+        {
+          path: "/cards",
+          element: <Cards />,
         },
       ],
     },
