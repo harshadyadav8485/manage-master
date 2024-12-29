@@ -24,7 +24,7 @@ export const SubDistricts = () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
+      <div className="max-w-7xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>

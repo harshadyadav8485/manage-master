@@ -12,6 +12,7 @@ import { Villages } from "./Pages/Villages";
 import { AddState } from "./Pages/AddState";
 import { AddDistrict } from "./Pages/AddDistrict";
 import { Cards } from "./Pages/Cards";
+import { EditState } from "./Pages/EditState";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,46 +21,46 @@ function App() {
       element: <AppLayout />,
       children: [
         {
-          path: "/home",
+          path: "home",
           element: <Home />,
         },
         {
-          path: "/states",
+          path: "states",
           element: <States />,
         },
         {
-          path: "/districts",
+          path: "districts",
           element: <District />,
         },
         {
-          path: "/SubDistricts",
+          path: "subDistricts",
           element: <SubDistricts />,
         },
         {
-          path: "/villages",
+          path: "villages",
           element: <Villages />,
         },
         {
-          path: "/addState",
+          path: "addState",
           element: <AddState />,
         },
         {
-          path: "/addDistrict",
+          path: "addDistrict",
           element: <AddDistrict />,
         },
         {
-          path: "/cards",
+          path: "cards",
           element: <Cards />,
+        },
+        {
+          path: "editState/:stateId", // Direct path for editing state
+          element: <EditState />,
         },
       ],
     },
   ]);
 
-  return (
-    <>
-      <RouterProvider router={router} />;
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

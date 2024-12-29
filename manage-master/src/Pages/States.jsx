@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Button from "../Components/UI/Button";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const States = () => {
+  const navigate = useNavigate();
+
   const [stateData, setStateData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -32,8 +34,9 @@ export const States = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleClick = () => {
-    alert("Button clicked!");
+  const handleClick = (stateId) => {
+    console.log(stateId);
+    navigate(`/editState/${stateId}`);
   };
 
   return (
@@ -95,7 +98,10 @@ export const States = () => {
                     {state.isLiveOnMarketPlace ? "true" : "false"}
                   </td>
                   <td className="px-6 py-4">
-                    <Button text="Edit" onClick={handleClick} />
+                    <Button
+                      text="Edit"
+                      onClick={() => handleClick(state.stateId)}
+                    />
                   </td>
                 </tr>
               ))}
