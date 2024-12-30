@@ -13,6 +13,7 @@ import { AddState } from "./Pages/AddState";
 import { AddDistrict } from "./Pages/AddDistrict";
 import { Cards } from "./Pages/Cards";
 import { EditState } from "./Pages/EditState";
+import { AddVillage } from "./Pages/AddVillgae";
 
 function App() {
   const router = createBrowserRouter([
@@ -53,8 +54,12 @@ function App() {
           element: <Cards />,
         },
         {
-          path: "editState/:stateId", // Direct path for editing state
+          path: "editState/:stateId",
           element: <EditState />,
+        },
+        {
+          path: "addVillage",
+          element: <AddVillage />,
         },
       ],
     },
