@@ -5,16 +5,21 @@ export const AddVillage = () => {
   const [stateData, setStateData] = useState([]);
   const [districtData, setDistrictData] = useState([]);
   const [subDistrictData, setSubDistrictData] = useState([]);
+  const [blockData, setBlockData] = useState([]);
 
   const [loadingStates, setLoadingStates] = useState(false);
   const [loadingDistricts, setLoadingDistricts] = useState(false);
   const [loadingSubdistrict, setLoadingSubDistrict] = useState(false);
+  const [loadingBlock, setLoadingBlock] = useState(false);
 
   const [data, setData] = useState({
     stateId: "",
     districtId: "",
     subDistrictId: "",
+    blockId: "",
+    pincode: "",
   });
+  console.log("subDistrictData", subDistrictData);
 
   const fetchState = async () => {
     setLoadingStates(true);
@@ -52,32 +57,69 @@ export const AddVillage = () => {
         `https://masterservice.agrozone.in/master/district/sub_districts/v1/${districtId}`
       );
 
-      console.log(response);
-      setSubDistrictData(response.data.data.subDistricts);
+      setSubDistrictData(response.data.data.subdistricts);
+      console.log("subdistricts Data ", subDistrictData);
     } catch (error) {
       console.error("Error fetching subDistricts:", error);
     } finally {
       setLoadingSubDistrict(false);
     }
+
+    setLoadingBlock(true);
+    try {
+      const response1 =
+        await axios.get(`https://masterservice.agrozone.in/master/district/blocks/v1/${districtId}
+    `);
+
+      setBlockData(response1.data.data.blocks);
+      console.log("blockData Data ", blockData);
+    } catch (error) {
+    } finally {
+      setLoadingBlock(false);
+    }
   };
 
   const handelChange = (e) => {
     const { name, value } = e.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
 
-    console.log("name ", name);
-    console.log("value ", value);
+    setData((prev) => {
+      if (name === "stateId") {
+        return {
+          ...prev,
+          stateId: value,
+          districtId: "",
+          subDistrictId: "",
+          blockId: "",
+        };
+      }
+      if (name === "districtId") {
+        return {
+          ...prev,
+          districtId: value,
+          subDistrictId: "",
+          blockId: "",
+        };
+      }
+      if (name === "subDistrictId") {
+        return {
+          ...prev,
+          subDistrictId: value,
+          blockId: "",
+        };
+      }
+      return { ...prev, [name]: value };
+    });
 
     if (name === "stateId") {
       setDistrictData([]);
       setSubDistrictData([]);
+      setBlockData([]);
       fetchDistrict({ stateId: value });
     }
+
     if (name === "districtId") {
       setSubDistrictData([]);
+      setBlockData([]);
       fetchSubdistrict({ districtId: value });
     }
   };
@@ -90,6 +132,8 @@ export const AddVillage = () => {
     e.preventDefault();
     console.log("Form data submitted:", data);
   };
+
+  console.log("data", data);
 
   return (
     <div className="flex flex-col">
@@ -161,11 +205,33 @@ export const AddVillage = () => {
                     ? "Loading SubDistricts..."
                     : "Select a SubDistrict"}
                 </option>
-                {subDistrictData.map((subDistrict, index) => (
-                  <option key={index} value={subDistrict.subDistrictId}>
+                {subDistrictData?.map((subDistrict, index) => (
+                  <option key={index} value={subDistrict?.subDistrictId}>
                     {subDistrict.subDistrict}
                   </option>
                 ))}
+              </select>
+            </div>
+
+            <div className="flex-1 min-w-[150px]">
+              <label className="block">Block</label>
+              <select
+                className="block w-full p-2"
+                name="blockId"
+                value={data.blockId}
+                onChange={handelChange}
+              >
+                <option value="">
+                  {loadingBlock ? "Loading Block..." : "Select a Block"}
+                </option>
+
+                {blockData.map((block, index) => {
+                  return (
+                    <option key={index} value={block?.blockId}>
+                      {block?.block}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
