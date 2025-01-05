@@ -44,6 +44,10 @@ export const Villages = () => {
     navigate(`/addVillage`);
   };
 
+  const handelEdit = (villageId) => {
+    navigate(`/editVillage/${villageId}`);
+  };
+
   useEffect(() => {
     FetchVillages("");
     return () => {
@@ -108,7 +112,10 @@ export const Villages = () => {
                     {village.isLiveForDelivery ? "Yes" : "No"}
                   </td>
                   <td className="px-6 py-4">
-                    <button className="hover:bg-green-400 px-2">
+                    <button
+                      className="hover:bg-green-400 px-2"
+                      onClick={() => handelEdit(village.villageId)}
+                    >
                       <svg
                         class="w-6 h-6 text-gray-800 dark:text-white"
                         aria-hidden="true"
