@@ -15,6 +15,8 @@ import { Cards } from "./Pages/Cards";
 import { EditState } from "./Pages/EditState";
 import { AddVillage } from "./Pages/AddVillgae";
 import { EditVillage } from "./Pages/EditVillage";
+import StickyHeadTable from "./Pages/StickyHeader";
+import { Overflow } from "./Pages/Overflow";
 
 function App() {
   const router = createBrowserRouter([
@@ -65,6 +67,14 @@ function App() {
         {
           path: "/editVillage/:villageId",
           element: <EditVillage />,
+        },
+        {
+          path: "/sticky",
+          element: <StickyHeadTable />,
+        },
+        {
+          path: "/overflow",
+          element: <Overflow />,
         },
       ],
     },

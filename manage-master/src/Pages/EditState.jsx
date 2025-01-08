@@ -5,8 +5,6 @@ import { useParams } from "react-router-dom";
 export const EditState = () => {
   const { stateId } = useParams();
 
-  console.log("State ID:", stateId);
-
   const [state, stateData] = useState({
     state: "",
     stateCode: "",

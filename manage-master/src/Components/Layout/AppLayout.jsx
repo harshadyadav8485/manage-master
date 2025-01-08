@@ -8,9 +8,9 @@ export const AppLayout = () => {
       <Sidebar />
 
       <div className="flex-1 ml-56 flex flex-col">
-        <Header className="fixed w-full top-0 left-0 z-10" />
+        <Header className="w-full top-0 left-0 z-10 sticky bg-white" />
 
-        <main className="flex-1 p-4 bg-gray-50">
+        <main className="flex-1 p-4 bg-gray-50 overflow-hidden">
           <Outlet />
         </main>
       </div>
