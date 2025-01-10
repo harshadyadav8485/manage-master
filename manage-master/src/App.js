@@ -17,12 +17,14 @@ import { AddVillage } from "./Pages/AddVillgae";
 import { EditVillage } from "./Pages/EditVillage";
 import StickyHeadTable from "./Pages/StickyHeader";
 import { Overflow } from "./Pages/Overflow";
+import { ErrorPage } from "./Pages/Error";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <AppLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "home",
