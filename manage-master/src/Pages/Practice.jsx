@@ -7,6 +7,8 @@ const Practice = () => {
       <h1>Stage 3 changes</h1>
       <h1>Stage 4 changes</h1>
       <h1>Stage 5 added</h1>
+      <h1>Stage 6 added</h1>
+      <h1>Stage 7 added</h1>
     </>
   );
 };
