@@ -11,6 +11,7 @@ const Practice = () => {
       <h1>Stage 7 added</h1>
       <h1>Stage 8 added</h1>
       <h1>Stage 9 added</h1>
+      <h1>Stage 10 added</h1>
     </>
   );
 };
