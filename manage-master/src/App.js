@@ -17,6 +17,15 @@ import { AddVillage } from "./Pages/AddVillgae";
 import { EditVillage } from "./Pages/EditVillage";
 import StickyHeadTable from "./Pages/StickyHeader";
 import { Overflow } from "./Pages/Overflow";
+import { Projects } from "./Pages/Projects";
+import { AddProjects } from "./Pages/AddProjects";
+import { Epic } from "./Pages/Epic";
+import { AddEpic } from "./Pages/AddEpic";
+import { CreateTask } from "./Pages/AddTask";
+import { Practice } from "./Pages/Practice";
+import Subtask from "./Pages/Subtask";
+import { Role, ROle } from "./Pages/Role";
+import { EditRole } from "./Pages/EditRole";
 
 function App() {
   const router = createBrowserRouter([
@@ -75,6 +84,43 @@ function App() {
         {
           path: "/overflow",
           element: <Overflow />,
+        },
+        {
+          path: "/projects",
+          element: <Projects />,
+        },
+        {
+          path: "/addProjects",
+          element: <AddProjects />,
+        },
+        {
+          path: "/epic",
+          element: <Epic />,
+        },
+        {
+          path: "/addEpic",
+          element: <AddEpic />,
+        },
+        {
+          path: "/createTask",
+          element: <CreateTask />,
+        },
+        {
+          path: "/practice",
+          element: <Practice />,
+        },
+        {
+          path: "/subtask",
+          element: <Subtask />,
+        },
+        {
+          path: "/role",
+          element: <Role />,
+        },
+
+        {
+          path: "editROle/:roleId",
+          element: <EditRole />,
         },
       ],
     },

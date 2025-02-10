@@ -21,6 +21,24 @@ export const Sidebar = () => {
           {" "}
           <li className="p-4 hover:bg-gray-700 cursor-pointer">Villages</li>
         </Link>
+        <Link to="/projects">
+          {" "}
+          <li className="p-4 hover:bg-gray-700 cursor-pointer">Projects</li>
+        </Link>
+        <Link to="/epic">
+          {" "}
+          <li className="p-4 hover:bg-gray-700 cursor-pointer">Epic</li>
+        </Link>
+        <Link to="/createTask">
+          {" "}
+          <li className="p-4 hover:bg-gray-700 cursor-pointer">CreateTask</li>
+        </Link>
+        <Link to={"/subtask"}>
+          <li className="p-4 hover:bg-gray-700 cursor-pointer">Subtask</li>
+        </Link>
+        <Link to={"/role"}>
+          <li className="p-4 hover:bg-gray-700 cursor-pointer">Role</li>
+        </Link>
       </ul>
     </div>
   );
