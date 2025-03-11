@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Snackbar, Alert, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export const Practice = () => {
+export const Practice2 = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     gender: "",
-    status: [],
+    status: "",
     phoneNumber: "",
     address: {
       city: "",
@@ -14,7 +15,7 @@ export const Practice = () => {
     },
     roles: [],
   });
-  const statuses = ["PENDING", "APPROVED", "IN_PROGRESS"]; // Corrected typo here
+  const statuses = ["PENDING", "APPROVED", "IN_PROGRESS"];
 
   const roleOptions = [
     { value: "admin", label: "Admin" },
@@ -22,19 +23,17 @@ export const Practice = () => {
     { value: "viewer", label: "Viewer" },
     { value: "manager", label: "Manager" },
   ];
+  const statues = ["PENDING", "APPROVED", "IN_PROGRESS"];
 
   const handleChange = (e) => {
-    // Corrected typo here
     const { name, value } = e.target;
+    // console.log("name", name);
+    // console.log("value", value);
 
-    setUserData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleNestedObject = (e) => {
-    // Corrected typo here
+  const handleAddressChange = (e) => {
     const { name, value } = e.target;
     setUserData((prev) => ({
       ...prev,
@@ -46,39 +45,53 @@ export const Practice = () => {
   };
 
   const handleSubmit = (e) => {
-    // Corrected typo here
     e.preventDefault();
-    console.log(userData);
+    console.log("userData", userData);
+    setUserData({
+      name: "",
+      email: "",
+      gender: "",
+      status: "",
+      phoneNumber: "",
+      address: {
+        city: "",
+        state: "",
+      },
+    });
+
+    // navigate("/");
   };
 
   return (
     <>
       <div>
+        <h1>practice</h1>
+
         <form onSubmit={handleSubmit}>
-          <label>Name</label>
+          <lable>Name</lable>
           <input
             type="text"
             name="name"
-            value={userData.name}
             placeholder="Enter Name"
+            value={userData.name}
             onChange={handleChange}
           />
           <br />
-          <label>Email</label>
+          <lable>Email</lable>
           <input
             type="text"
             name="email"
-            value={userData.email}
             placeholder="Enter Email"
+            value={userData.email}
             onChange={handleChange}
           />
           <br />
-          <label>Phone Number</label>
+          <lable>PhoneNumber</lable>
           <input
             type="text"
             name="phoneNumber"
+            placeholder="Enter phoneNumber"
             value={userData.phoneNumber}
-            placeholder="Enter Phone Number"
             onChange={handleChange}
           />
           <br />
@@ -100,45 +113,36 @@ export const Practice = () => {
           />
           Female
           <br />
-          <label>Status</label>
-          <select
-            name="status"
-            value={userData.status}
-            onChange={handleChange}
-            multiple
-          >
-            <option value="">Select a Status</option>
-            {statuses.map(
-              (
-                status,
-                index // Corrected typo here
-              ) => (
-                <option key={index} value={status}>
-                  {status}
-                </option>
-              )
-            )}
+          <select name="status" value={userData.status} onChange={handleChange}>
+            <option value="">Select a status</option>
+            {statues.map((staus, index) => (
+              <option key={index} value={staus}>
+                {staus}
+              </option>
+            ))}
           </select>
           <br />
-          <label>City</label>
+          <lable>City</lable>
           <input
             type="text"
             name="city"
-            value={userData.address.city}
             placeholder="Enter City"
-            onChange={handleNestedObject}
+            value={userData.address.city}
+            onChange={handleAddressChange}
           />
           <br />
-          <label>State</label>
+          <lable>State</lable>
           <input
             type="text"
             name="state"
+            placeholder="Enter state"
             value={userData.address.state}
-            placeholder="Enter State"
-            onChange={handleNestedObject}
+            onChange={handleAddressChange}
           />
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit" className="bg-white text-black">
+            Submit
+          </button>
         </form>
       </div>
     </>

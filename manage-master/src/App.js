@@ -26,6 +26,13 @@ import { Practice } from "./Pages/Practice";
 import Subtask from "./Pages/Subtask";
 import { Role, ROle } from "./Pages/Role";
 import { EditRole } from "./Pages/EditRole";
+import { Practice2 } from "./Pages/Practice2";
+import { AddVillages } from "./Pages/AddVillages";
+import { Project } from "./Pages/Project";
+import { ProjectPost } from "./Pages/ProjectPost";
+import { VillagePost } from "./Pages/VillagePost";
+import { ViewTabel } from "./Pages/ViewTabel";
+import Dashboard from "./Pages/Dashbord";
 
 function App() {
   const router = createBrowserRouter([
@@ -121,6 +128,38 @@ function App() {
         {
           path: "editROle/:roleId",
           element: <EditRole />,
+        },
+        {
+          path: "Practice2",
+          element: <Practice2 />,
+        },
+        {
+          path: "Practice2",
+          element: <Practice2 />,
+        },
+        {
+          path: "addVillages",
+          element: <AddVillages />,
+        },
+        {
+          path: "/project",
+          element: <Project />,
+        },
+        {
+          path: "/projectCreate",
+          element: <ProjectPost />,
+        },
+        {
+          path: "/villagePost",
+          element: <VillagePost />,
+        },
+        {
+          path: "/table",
+          element: <ViewTabel />,
+        },
+        {
+          path: "/dashbord",
+          element: <Dashboard />,
         },
       ],
     },

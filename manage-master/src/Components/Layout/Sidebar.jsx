@@ -39,6 +39,9 @@ export const Sidebar = () => {
         <Link to={"/role"}>
           <li className="p-4 hover:bg-gray-700 cursor-pointer">Role</li>
         </Link>
+        <Link to={"/addVillages"}>
+          <li className="p-4 hover:bg-gray-700 cursor-pointer">Add VIllage</li>
+        </Link>
       </ul>
     </div>
   );

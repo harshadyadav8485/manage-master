@@ -39,18 +39,39 @@ export const EditRole = () => {
     const { name, value } = e.target;
     setRoleData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const handelSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put("http://localhost:9090/role/v1", roleData);
-      alert("Role updated successfully!");
+      const response = await fetch("http://localhost:9090/role/v1", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(roleData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      console.log("Role updated successfully");
+
+      // Navigate after successful update
       navigate("/role");
     } catch (error) {
       console.error("Error updating role:", error);
-      alert("Failed to update role. Please try again.");
     }
   };
+
+  // try {
+  //   await axios.put("http://localhost:9090/role/v1", roleData);
+  //   alert("Role updated successfully!");
+  //   navigate("/role");
+  // } catch (error) {
+  //   console.error("Error updating role:", error);
+  //   alert("Failed to update role. Please try again.");
+  // }
+  // };
 
   useEffect(() => {
     if (roleId) {
@@ -63,7 +84,7 @@ export const EditRole = () => {
       <div>
         <h1>Edit Role</h1>
         <div>
-          <form onSubmit={handelSubmit}>
+          <form onSubmit={handleSubmit}>
             <lable>RoleName</lable>
             <input
               type="text"
